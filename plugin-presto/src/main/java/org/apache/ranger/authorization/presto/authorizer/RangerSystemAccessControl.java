@@ -19,7 +19,7 @@
 package org.apache.ranger.authorization.presto.authorizer;
 
 import io.prestosql.spi.connector.CatalogSchemaName;
-import io.prestosql.spi.connector.CatalogSchemaRoutineName;
+//import io.prestosql.spi.connector.CatalogSchemaRoutineName;
 import io.prestosql.spi.connector.CatalogSchemaTableName;
 import io.prestosql.spi.connector.ColumnMetadata;
 import io.prestosql.spi.connector.SchemaTableName;
@@ -28,7 +28,7 @@ import io.prestosql.spi.security.PrestoPrincipal;
 import io.prestosql.spi.security.Privilege;
 import io.prestosql.spi.security.SystemAccessControl;
 import io.prestosql.spi.security.SystemSecurityContext;
-import io.prestosql.spi.security.ViewExpression;
+//import io.prestosql.spi.security.ViewExpression;
 import io.prestosql.spi.type.Type;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
@@ -156,7 +156,7 @@ public class RangerSystemAccessControl
   private boolean isRowFilterEnabled(RangerAccessResult result) {
     return result != null && result.isRowFilterEnabled();
   }
-
+  /*
   @Override
   public Optional<ViewExpression> getRowFilter(SystemSecurityContext context, CatalogSchemaTableName tableName) {
     RangerPrestoAccessRequest request = createAccessRequest(createResource(tableName), context, PrestoAccessType.SELECT);
@@ -174,7 +174,8 @@ public class RangerSystemAccessControl
     }
     return Optional.ofNullable(viewExpression);
   }
-
+   */
+  /*
   @Override
   public Optional<ViewExpression> getColumnMask(SystemSecurityContext context, CatalogSchemaTableName tableName, String columnName, Type type) {
     RangerPrestoAccessRequest request = createAccessRequest(
@@ -223,6 +224,7 @@ public class RangerSystemAccessControl
 
     return Optional.ofNullable(viewExpression);
   }
+   */
 
   @Override
   public Set<String> filterCatalogs(SystemSecurityContext context, Set<String> catalogs) {
@@ -273,6 +275,7 @@ public class RangerSystemAccessControl
     }
   }
 
+  /*
   @Override
   public void checkCanImpersonateUser(SystemSecurityContext context, String userName) {
     if (!hasPermission(createUserResource(userName), context, PrestoAccessType.IMPERSONATE)) {
@@ -280,6 +283,7 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyImpersonateUser(context.getIdentity().getUser(), userName);
     }
   }
+   */
 
   @Override
   public void checkCanSetUser(Optional<Principal> principal, String userName) {
@@ -321,7 +325,7 @@ public class RangerSystemAccessControl
   }
 
   /** SCHEMA **/
-
+  /*
   @Override
   public void checkCanSetSchemaAuthorization(SystemSecurityContext context, CatalogSchemaName schema, PrestoPrincipal principal) {
     if (!hasPermission(createResource(schema.getCatalogName(), schema.getSchemaName()), context, PrestoAccessType.GRANT)) {
@@ -329,7 +333,9 @@ public class RangerSystemAccessControl
       AccessDeniedException.denySetSchemaAuthorization(schema.getSchemaName(), principal);
     }
   }
+   */
 
+  /*
   @Override
   public void checkCanShowCreateSchema(SystemSecurityContext context, CatalogSchemaName schema) {
     if (!hasPermission(createResource(schema.getCatalogName(), schema.getSchemaName()), context, PrestoAccessType.SHOW)) {
@@ -337,6 +343,7 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyShowCreateSchema(schema.getSchemaName());
     }
   }
+   */
 
   /**
    * Create schema is evaluated on the level of the Catalog. This means that it is assumed you have permission
@@ -374,7 +381,7 @@ public class RangerSystemAccessControl
   }
 
   /** TABLE **/
-
+  /*
   @Override
   public void checkCanShowTables(SystemSecurityContext context, CatalogSchemaName schema) {
     if (!hasPermission(createResource(schema), context, PrestoAccessType.SHOW)) {
@@ -382,8 +389,9 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyShowTables(schema.toString());
     }
   }
+   */
 
-
+  /*
   @Override
   public void checkCanShowCreateTable(SystemSecurityContext context, CatalogSchemaTableName table) {
     if (!hasPermission(createResource(table), context, PrestoAccessType.SHOW)) {
@@ -391,6 +399,7 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyShowCreateTable(table.toString());
     }
   }
+   */
 
   /**
    * Create table is verified on schema level
@@ -504,7 +513,7 @@ public class RangerSystemAccessControl
 
   /**
    * This is evaluated against the table name as ownership information is not available
-   */
+
   @Override
   public void checkCanRenameView(SystemSecurityContext context, CatalogSchemaTableName view, CatalogSchemaTableName newView) {
     if (!hasPermission(createResource(view), context, PrestoAccessType.ALTER)) {
@@ -512,6 +521,7 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyRenameView(view.toString(), newView.toString());
     }
   }
+   */
 
   /** COLUMN **/
 
@@ -552,7 +562,7 @@ public class RangerSystemAccessControl
 
   /**
    * This is evaluated on table level
-   */
+
   @Override
   public void checkCanShowColumns(SystemSecurityContext context, CatalogSchemaTableName table) {
     if (!hasPermission(createResource(table), context, PrestoAccessType.SHOW)) {
@@ -560,6 +570,7 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyShowColumns(table.toString());
     }
   }
+   */
 
   @Override
   public void checkCanSelectFromColumns(SystemSecurityContext context, CatalogSchemaTableName table, Set<String> columns) {
@@ -585,10 +596,12 @@ public class RangerSystemAccessControl
    * This is a NOOP. Everyone can execute a query
    * @param context
    */
+  /*
   @Override
   public void checkCanExecuteQuery(SystemSecurityContext context) {
   }
-
+   */
+  /*
   @Override
   public void checkCanViewQueryOwnedBy(SystemSecurityContext context, String queryOwner) {
     if (!hasPermission(createUserResource(queryOwner), context, PrestoAccessType.IMPERSONATE)) {
@@ -596,15 +609,18 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyImpersonateUser(context.getIdentity().getUser(), queryOwner);
     }
   }
+   */
 
   /**
    * This is a NOOP, no filtering is applied
    */
+  /*
   @Override
   public Set<String> filterViewQueryOwnedBy(SystemSecurityContext context, Set<String> queryOwners) {
     return queryOwners;
   }
-
+   */
+  /*
   @Override
   public void checkCanKillQueryOwnedBy(SystemSecurityContext context, String queryOwner) {
     if (!hasPermission(createUserResource(queryOwner), context, PrestoAccessType.IMPERSONATE)) {
@@ -612,8 +628,10 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyImpersonateUser(context.getIdentity().getUser(), queryOwner);
     }
   }
+  */
 
   /** FUNCTIONS **/
+  /*
   @Override
   public void checkCanGrantExecuteFunctionPrivilege(SystemSecurityContext context, String function, PrestoPrincipal grantee, boolean grantOption) {
     if (!hasPermission(createFunctionResource(function), context, PrestoAccessType.GRANT)) {
@@ -621,7 +639,8 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyGrantExecuteFunctionPrivilege(function, context.getIdentity(), grantee.getName());
     }
   }
-
+  */
+  /*
   @Override
   public void checkCanExecuteFunction(SystemSecurityContext context, String function) {
     if (!hasPermission(createFunctionResource(function), context, PrestoAccessType.EXECUTE)) {
@@ -629,8 +648,10 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyExecuteFunction(function);
     }
   }
+  */
 
   /** PROCEDURES **/
+  /*
   @Override
   public void checkCanExecuteProcedure(SystemSecurityContext context, CatalogSchemaRoutineName procedure) {
     if (!hasPermission(createProcedureResource(procedure), context, PrestoAccessType.EXECUTE)) {
@@ -638,6 +659,7 @@ public class RangerSystemAccessControl
       AccessDeniedException.denyExecuteProcedure(procedure.getSchemaRoutineName().getRoutineName());
     }
   }
+  */
 
   /** HELPER FUNCTIONS **/
 
@@ -652,9 +674,9 @@ public class RangerSystemAccessControl
       if (groups != null && groups.length > 0) {
         userGroups = new HashSet<>(Arrays.asList(groups));
       }
-    } else {
+    } /* else {
       userGroups = context.getIdentity().getGroups();
-    }
+    } */
 
     RangerPrestoAccessRequest request = new RangerPrestoAccessRequest(
       resource,
@@ -692,7 +714,7 @@ public class RangerSystemAccessControl
 
     return res;
   }
-
+  /*
   private static RangerPrestoResource createProcedureResource(CatalogSchemaRoutineName procedure) {
     RangerPrestoResource res = new RangerPrestoResource();
     res.setValue(RangerPrestoResource.KEY_CATALOG, procedure.getCatalogName());
@@ -701,6 +723,7 @@ public class RangerSystemAccessControl
 
     return res;
   }
+   */
 
   private static RangerPrestoResource createCatalogSessionResource(String catalogName, String propertyName) {
     RangerPrestoResource res = new RangerPrestoResource();

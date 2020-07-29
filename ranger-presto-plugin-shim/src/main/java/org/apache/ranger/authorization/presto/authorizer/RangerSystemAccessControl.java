@@ -14,7 +14,7 @@
 package org.apache.ranger.authorization.presto.authorizer;
 
 import io.prestosql.spi.connector.CatalogSchemaName;
-import io.prestosql.spi.connector.CatalogSchemaRoutineName;
+//import io.prestosql.spi.connector.CatalogSchemaRoutineName;
 import io.prestosql.spi.connector.CatalogSchemaTableName;
 import io.prestosql.spi.connector.ColumnMetadata;
 import io.prestosql.spi.connector.SchemaTableName;
@@ -22,7 +22,7 @@ import io.prestosql.spi.security.PrestoPrincipal;
 import io.prestosql.spi.security.Privilege;
 import io.prestosql.spi.security.SystemAccessControl;
 import io.prestosql.spi.security.SystemSecurityContext;
-import io.prestosql.spi.security.ViewExpression;
+//import io.prestosql.spi.security.ViewExpression;
 import io.prestosql.spi.type.Type;
 import org.apache.ranger.plugin.classloader.RangerPluginClassLoader;
 
@@ -297,7 +297,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+  /*
   @Override
   public void checkCanImpersonateUser(SystemSecurityContext context, String userName) {
     try {
@@ -307,7 +307,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanExecuteQuery(SystemSecurityContext context) {
     try {
@@ -317,7 +318,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanViewQueryOwnedBy(SystemSecurityContext context, String queryOwner) {
     try {
@@ -327,7 +329,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public Set<String> filterViewQueryOwnedBy(SystemSecurityContext context, Set<String> queryOwners) {
     Set<String> filteredQueryOwners;
@@ -339,7 +342,8 @@ public class RangerSystemAccessControl
     }
     return filteredQueryOwners;
   }
-
+   */
+  /*
   @Override
   public void checkCanKillQueryOwnedBy(SystemSecurityContext context, String queryOwner) {
     try {
@@ -349,7 +353,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanShowCreateTable(SystemSecurityContext context, CatalogSchemaTableName table) {
     try {
@@ -359,6 +364,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
+   */
 
   @Override
   public void checkCanSetTableComment(SystemSecurityContext context, CatalogSchemaTableName table) {
@@ -369,7 +375,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+  /*
   @Override
   public void checkCanShowTables(SystemSecurityContext context, CatalogSchemaName schema) {
     try {
@@ -379,7 +385,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanShowColumns(SystemSecurityContext context, CatalogSchemaTableName table) {
     try {
@@ -389,6 +396,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
+   */
 
   @Override
   public List<ColumnMetadata> filterColumns(SystemSecurityContext context, CatalogSchemaTableName table, List<ColumnMetadata> columns) {
@@ -401,7 +409,7 @@ public class RangerSystemAccessControl
     }
     return filteredColumns;
   }
-
+  /*
   @Override
   public void checkCanRenameView(SystemSecurityContext context, CatalogSchemaTableName view, CatalogSchemaTableName newView) {
     try {
@@ -411,6 +419,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
+   */
 
   @Override
   public void checkCanGrantTablePrivilege(SystemSecurityContext context, Privilege privilege, CatalogSchemaTableName table, PrestoPrincipal grantee, boolean withGrantOption) {
@@ -441,7 +450,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+  /*
   @Override
   public Optional<ViewExpression> getRowFilter(SystemSecurityContext context, CatalogSchemaTableName tableName) {
     Optional<ViewExpression> viewExpression;
@@ -453,7 +462,8 @@ public class RangerSystemAccessControl
     }
     return viewExpression;
   }
-
+   */
+  /*
   @Override
   public Optional<ViewExpression> getColumnMask(SystemSecurityContext context, CatalogSchemaTableName tableName, String columnName, Type type) {
     Optional<ViewExpression> viewExpression;
@@ -465,6 +475,7 @@ public class RangerSystemAccessControl
     }
     return viewExpression;
   }
+   */
 
   @Override
   public void checkCanSetUser(Optional<Principal> principal, String userName) {
@@ -475,7 +486,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+  /*
   @Override
   public void checkCanGrantExecuteFunctionPrivilege(SystemSecurityContext context, String functionName, PrestoPrincipal grantee, boolean grantOption) {
     try {
@@ -485,7 +496,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanSetSchemaAuthorization(SystemSecurityContext context, CatalogSchemaName schema, PrestoPrincipal principal) {
     try {
@@ -495,7 +507,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanShowCreateSchema(SystemSecurityContext context, CatalogSchemaName schemaName) {
     try {
@@ -505,7 +518,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanExecuteProcedure(SystemSecurityContext systemSecurityContext, CatalogSchemaRoutineName procedure) {
     try {
@@ -515,7 +529,8 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
-
+   */
+  /*
   @Override
   public void checkCanExecuteFunction(SystemSecurityContext systemSecurityContext, String functionName) {
     try {
@@ -525,6 +540,7 @@ public class RangerSystemAccessControl
       deactivatePluginClassLoader();
     }
   }
+   */
 
   private void activatePluginClassLoader() {
     if (rangerPluginClassLoader != null) {
