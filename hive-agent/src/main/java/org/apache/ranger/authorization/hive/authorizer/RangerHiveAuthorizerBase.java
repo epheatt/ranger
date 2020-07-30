@@ -159,10 +159,12 @@ public abstract class RangerHiveAuthorizerBase extends AbstractHiveAuthorizer {
 		throw new HiveAuthzPluginException(method + "() not implemented in Ranger AbstractHiveAuthorizer");
 	}
 
+	/*
 	@Override
 	public HivePolicyProvider getHivePolicyProvider() throws HiveAuthzPluginException {
 	    // TODO Auto-generated method stub
 	    return null;
 	}
+	 */
 
 }

@@ -1321,8 +1321,8 @@ public class RangerHiveAuthorizer extends RangerHiveAuthorizerBase {
 				case ALTERDATABASE:
 				case ALTERDATABASE_LOCATION:
 				case ALTERDATABASE_OWNER:
-				case ALTERINDEX_PROPS:
-				case ALTERINDEX_REBUILD:
+				//case ALTERINDEX_PROPS:
+				//case ALTERINDEX_REBUILD:
 				case ALTERPARTITION_BUCKETNUM:
 				case ALTERPARTITION_FILEFORMAT:
 				case ALTERPARTITION_LOCATION:
@@ -1361,13 +1361,13 @@ public class RangerHiveAuthorizer extends RangerHiveAuthorizerBase {
 				case ALTERVIEW_AS:
 				case ALTERVIEW_PROPERTIES:
 				case ALTERVIEW_RENAME:
-				case DROPVIEW_PROPERTIES:
+				//case DROPVIEW_PROPERTIES:
 				case MSCK:
 					accessType = HiveAccessType.ALTER;
 				break;
 
 				case DROPFUNCTION:
-				case DROPINDEX:
+				//case DROPINDEX:
 				case DROPTABLE:
 				case DROPVIEW:
 				case DROP_MATERIALIZED_VIEW:
@@ -1375,9 +1375,9 @@ public class RangerHiveAuthorizer extends RangerHiveAuthorizerBase {
 					accessType = HiveAccessType.DROP;
 				break;
 
-				case CREATEINDEX:
-					accessType = HiveAccessType.INDEX;
-				break;
+				//case CREATEINDEX:
+				//	accessType = HiveAccessType.INDEX;
+				//break;
 
 				case IMPORT:
 					/*
@@ -1411,7 +1411,7 @@ public class RangerHiveAuthorizer extends RangerHiveAuthorizerBase {
 				case QUERY:
 				case SHOW_TABLESTATUS:
 				case SHOW_CREATETABLE:
-				case SHOWINDEXES:
+				//case SHOWINDEXES:
 				case SHOWPARTITIONS:
 				case SHOW_TBLPROPERTIES:
 				case ANALYZE_TABLE:
@@ -1555,7 +1555,7 @@ public class RangerHiveAuthorizer extends RangerHiveAuthorizerBase {
 			case ALTERTABLE_PROTECTMODE:
 			case ALTERTABLE_FILEFORMAT:
 			case ALTERTABLE_LOCATION:
-			case ALTERINDEX_PROPS:
+			//case ALTERINDEX_PROPS:
 			case ALTERTABLE_MERGEFILES:
 			case ALTERTABLE_SKEWED:
 			case ALTERTABLE_COMPACT:
@@ -1592,7 +1592,7 @@ public class RangerHiveAuthorizer extends RangerHiveAuthorizerBase {
 			case SHOW_CREATETABLE:
 			case SHOWFUNCTIONS:
 			case SHOWVIEWS:
-			case SHOWINDEXES:
+			//case SHOWINDEXES:
 			case SHOWPARTITIONS:
 			case SHOWLOCKS:
 			case SHOWCONF:
@@ -1604,11 +1604,11 @@ public class RangerHiveAuthorizer extends RangerHiveAuthorizerBase {
 			case CREATEVIEW:
 			case DROPVIEW:
 			case CREATE_MATERIALIZED_VIEW:
-			case CREATEINDEX:
-			case DROPINDEX:
-			case ALTERINDEX_REBUILD:
+			//case CREATEINDEX:
+			//case DROPINDEX:
+			//case ALTERINDEX_REBUILD:
 			case ALTERVIEW_PROPERTIES:
-			case DROPVIEW_PROPERTIES:
+			//case DROPVIEW_PROPERTIES:
 			case DROP_MATERIALIZED_VIEW:
 			case LOCKTABLE:
 			case UNLOCKTABLE:

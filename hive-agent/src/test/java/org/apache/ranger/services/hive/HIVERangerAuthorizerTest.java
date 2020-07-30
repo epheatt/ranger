@@ -94,6 +94,8 @@ public class HIVERangerAuthorizerTest {
         conf.set(HiveConf.ConfVars.METASTORE_SCHEMA_VERIFICATION.toString(), "false");
         conf.set(HiveConf.ConfVars.HIVE_SERVER2_WEBUI_PORT.varname, "0");
         conf.set(HiveConf.ConfVars.HIVE_EXECUTION_ENGINE.varname,"mr");
+        //conf.set("hadoop.security.authentication","simple");
+        //conf.set(HiveConf.ConfVars.HIVE_SERVER2_AUTHENTICATION.varname,"NONE");
 
         hiveServer = new HiveServer2();
         hiveServer.init(conf);
