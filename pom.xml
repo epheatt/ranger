@@ -189,7 +189,7 @@
 		<jna.version>5.2.0</jna.version>
 		<jna-platform.version>5.2.0</jna-platform.version>
         <!-- presto plugin deps -->
-        <presto.airlift.version>0.192</presto.airlift.version>
+        <presto.airlift.version>0.184</presto.airlift.version>
         <presto.bval-jsr.version>2.0.0</presto.bval-jsr.version>
         <presto.guice.version>4.2.2</presto.guice.version>
         <presto.guava.version>26.0-jre</presto.guava.version>
@@ -701,7 +701,7 @@
                 </os>
             </activation>
             <modules>
-		<module>jisql</module>
+		        <module>jisql</module>
                 <module>agents-audit</module>
                 <module>agents-common</module>
                 <module>agents-cred</module>
@@ -839,6 +839,10 @@
     </distributionManagement>
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
             <id>apache.snapshots.https</id>
             <name>Apache Development Snapshot Repository</name>
             <url>https://repository.apache.org/content/repositories/snapshots</url>
@@ -869,6 +873,11 @@
     </repositories>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.github.epheatt</groupId>
+                <artifactId>ranger</artifactId>
+                <version>hive-2.3.6-presto-323-backport</version>
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
