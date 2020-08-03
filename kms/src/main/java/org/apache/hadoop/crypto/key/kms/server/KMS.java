@@ -29,7 +29,6 @@ import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.crypto.key.kms.KMSClientProvider;
 import org.apache.hadoop.crypto.key.kms.server.KMSACLsType.Type;
 import org.apache.hadoop.security.token.delegation.web.HttpUserGroupInformation;
-import org.apache.hadoop.util.KMSUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -110,7 +109,7 @@ public class KMS {
     KMSWebApp.getAdminCallsMeter().mark();
     UserGroupInformation user = HttpUserGroupInformation.get();
     final String name = (String) jsonKey.get(KMSRESTConstants.NAME_FIELD);
-    KMSUtil.checkNotEmpty(name, KMSRESTConstants.NAME_FIELD);
+    KMSClientProvider.checkNotEmpty(name, KMSRESTConstants.NAME_FIELD);
     validateKeyName(name);
     assertAccess(Type.CREATE, user, KMSOp.CREATE_KEY, name, request.getRemoteAddr());
     String cipher = (String) jsonKey.get(KMSRESTConstants.CIPHER_FIELD);
@@ -180,7 +179,7 @@ public class KMS {
     KMSWebApp.getAdminCallsMeter().mark();
     UserGroupInformation user = HttpUserGroupInformation.get();
     assertAccess(Type.DELETE, user, KMSOp.DELETE_KEY, name, request.getRemoteAddr());
-    KMSUtil.checkNotEmpty(name, "name");
+    KMSClientProvider.checkNotEmpty(name, "name");
 
     user.doAs(new PrivilegedExceptionAction<Void>() {
       @Override
@@ -205,7 +204,7 @@ public class KMS {
     KMSWebApp.getAdminCallsMeter().mark();
     UserGroupInformation user = HttpUserGroupInformation.get();
     assertAccess(Type.ROLLOVER, user, KMSOp.ROLL_NEW_VERSION, name, request.getRemoteAddr());
-    KMSUtil.checkNotEmpty(name, "name");
+    KMSClientProvider.checkNotEmpty(name, "name");
     final String material = (String)
         jsonMaterial.get(KMSRESTConstants.MATERIAL_FIELD);
     if (material != null) {
@@ -296,7 +295,7 @@ public class KMS {
   public Response getMetadata(@PathParam("name") final String name, @Context HttpServletRequest request)
       throws Exception {
     UserGroupInformation user = HttpUserGroupInformation.get();
-    KMSUtil.checkNotEmpty(name, "name");
+    KMSClientProvider.checkNotEmpty(name, "name");
     KMSWebApp.getAdminCallsMeter().mark();
     assertAccess(Type.GET_METADATA, user, KMSOp.GET_METADATA, name, request.getRemoteAddr());
 
@@ -321,7 +320,7 @@ public class KMS {
   public Response getCurrentVersion(@PathParam("name") final String name, @Context HttpServletRequest request)
       throws Exception {
     UserGroupInformation user = HttpUserGroupInformation.get();
-    KMSUtil.checkNotEmpty(name, "name");
+    KMSClientProvider.checkNotEmpty(name, "name");
     KMSWebApp.getKeyCallsMeter().mark();
     assertAccess(Type.GET, user, KMSOp.GET_CURRENT_KEY, name, request.getRemoteAddr());
 
@@ -348,7 +347,7 @@ public class KMS {
   public Response getKeyVersion(
       @PathParam("versionName") final String versionName, @Context HttpServletRequest request) throws Exception {
     UserGroupInformation user = HttpUserGroupInformation.get();
-    KMSUtil.checkNotEmpty(versionName, "versionName");
+    KMSClientProvider.checkNotEmpty(versionName, "versionName");
     KMSWebApp.getKeyCallsMeter().mark();
     assertAccess(Type.GET, user, KMSOp.GET_KEY_VERSION, request.getRemoteAddr());
 
@@ -380,8 +379,8 @@ public class KMS {
           @QueryParam(KMSRESTConstants.EEK_NUM_KEYS) final int numKeys, @Context HttpServletRequest request)
           throws Exception {
     UserGroupInformation user = HttpUserGroupInformation.get();
-    KMSUtil.checkNotEmpty(name, "name");
-    KMSUtil.checkNotNull(edekOp, "eekOp");
+    KMSClientProvider.checkNotEmpty(name, "name");
+    KMSClientProvider.checkNotNull(edekOp, "eekOp");
 
     Object retJSON;
     if (edekOp.equals(KMSRESTConstants.EEK_GENERATE)) {
@@ -432,8 +431,8 @@ public class KMS {
       Map jsonPayload, @Context HttpServletRequest request)
       throws Exception {
     UserGroupInformation user = HttpUserGroupInformation.get();
-    KMSUtil.checkNotEmpty(versionName, "versionName");
-    KMSUtil.checkNotNull(eekOp, "eekOp");
+    KMSClientProvider.checkNotEmpty(versionName, "versionName");
+    KMSClientProvider.checkNotNull(eekOp, "eekOp");
 
     final String keyName = (String) jsonPayload.get(
         KMSRESTConstants.NAME_FIELD);
@@ -443,9 +442,9 @@ public class KMS {
     Object retJSON;
     if (eekOp.equals(KMSRESTConstants.EEK_DECRYPT)) {
       assertAccess(Type.DECRYPT_EEK, user, KMSOp.DECRYPT_EEK, keyName, request.getRemoteAddr());
-      KMSUtil.checkNotNull(ivStr, KMSRESTConstants.IV_FIELD);
+      KMSClientProvider.checkNotNull(ivStr, KMSRESTConstants.IV_FIELD);
       final byte[] iv = Base64.decodeBase64(ivStr);
-      KMSUtil.checkNotNull(encMaterialStr,
+      KMSClientProvider.checkNotNull(encMaterialStr,
           KMSRESTConstants.MATERIAL_FIELD);
       final byte[] encMaterial = Base64.decodeBase64(encMaterialStr);
 
@@ -481,7 +480,7 @@ public class KMS {
   public Response getKeyVersions(@PathParam("name") final String name, @Context HttpServletRequest request)
       throws Exception {
     UserGroupInformation user = HttpUserGroupInformation.get();
-    KMSUtil.checkNotEmpty(name, "name");
+    KMSClientProvider.checkNotEmpty(name, "name");
     KMSWebApp.getKeyCallsMeter().mark();
     assertAccess(Type.GET, user, KMSOp.GET_KEY_VERSIONS, name, request.getRemoteAddr());
 

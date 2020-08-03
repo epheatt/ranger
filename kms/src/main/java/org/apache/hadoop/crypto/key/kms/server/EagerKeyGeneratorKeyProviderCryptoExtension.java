@@ -135,19 +135,6 @@ public class EagerKeyGeneratorKeyProviderCryptoExtension
       return keyProviderCryptoExtension.decryptEncryptedKey(
           encryptedKeyVersion);
     }
-
-	@Override
-	public EncryptedKeyVersion reencryptEncryptedKey(EncryptedKeyVersion arg0)
-			throws IOException, GeneralSecurityException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void reencryptEncryptedKeys(List<EncryptedKeyVersion> arg0) throws IOException, GeneralSecurityException {
-		// TODO Auto-generated method stub
-	}
-
   }
 
   /**

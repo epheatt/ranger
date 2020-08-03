@@ -21,14 +21,15 @@
 package org.apache.ranger.authorization.yarn.authorizer;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.security.authorize.AccessControlList;
-import org.apache.hadoop.yarn.security.AccessRequest;
-import org.apache.hadoop.yarn.security.Permission;
+import org.apache.hadoop.yarn.security.AccessType;
+import org.apache.hadoop.yarn.security.PrivilegedEntity;
 import org.apache.hadoop.yarn.security.YarnAuthorizationProvider;
 import org.apache.ranger.plugin.classloader.RangerPluginClassLoader;
 
@@ -42,7 +43,7 @@ public class RangerYarnAuthorizer extends YarnAuthorizationProvider {
 
 	private YarnAuthorizationProvider 	 	yarnAuthorizationProviderImpl = null;
 	private static RangerPluginClassLoader  rangerPluginClassLoader  	  = null;
-	
+
 	public RangerYarnAuthorizer() {
 		if(LOG.isDebugEnabled()) {
 			LOG.debug("==> RangerYarnAuthorizer.RangerYarnAuthorizer()");
@@ -102,8 +103,8 @@ public class RangerYarnAuthorizer extends YarnAuthorizationProvider {
 	}
 
 	@Override
-	public boolean checkPermission(AccessRequest accessRequest) {
-		
+	public boolean checkPermission(AccessType accessType, PrivilegedEntity target, UserGroupInformation user) {
+
 		boolean ret = false;
 		
 		if(LOG.isDebugEnabled()) {
@@ -113,7 +114,7 @@ public class RangerYarnAuthorizer extends YarnAuthorizationProvider {
 		try {
 			activatePluginClassLoader();
 
-			ret = yarnAuthorizationProviderImpl.checkPermission(accessRequest);
+			ret = yarnAuthorizationProviderImpl.checkPermission(accessType, target, user);
 		} finally {
 			deactivatePluginClassLoader();
 		}
@@ -126,7 +127,7 @@ public class RangerYarnAuthorizer extends YarnAuthorizationProvider {
 	}
 
 	@Override
-	public void setPermission(List<Permission> permissions, UserGroupInformation ugi) {
+	public void setPermission(PrivilegedEntity target, Map<AccessType, AccessControlList> acls, UserGroupInformation ugi) {
 		
 		if(LOG.isDebugEnabled()) {
 			LOG.debug("==> RangerYarnAuthorizer.setPermission()");
@@ -135,7 +136,7 @@ public class RangerYarnAuthorizer extends YarnAuthorizationProvider {
 		try {
 			activatePluginClassLoader();
 
-			yarnAuthorizationProviderImpl.setPermission(permissions, ugi);
+			yarnAuthorizationProviderImpl.setPermission(target, acls, ugi);
 		} finally {
 			deactivatePluginClassLoader();
 		}

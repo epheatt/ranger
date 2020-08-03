@@ -20,7 +20,9 @@
 package org.apache.ranger.authorization.kafka.authorizer;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletionStage;
 
 import javax.security.auth.Subject;
 
@@ -101,8 +103,7 @@ public class RangerKafkaAuthorizer implements Authorizer {
 						JaasContext context = JaasContext.loadServerContext(new ListenerName(listenerName), saslMechanism, configs);
 						LoginManager loginManager = LoginManager.acquireLoginManager(context, saslMechanism, KerberosLogin.class, configs);
 						Subject subject = loginManager.subject();
-						UserGroupInformation ugi = MiscUtil
-								.createUGIFromSubject(subject);
+						UserGroupInformation ugi = MiscUtil.createUGIFromSubject(subject);
 						if (ugi != null) {
 							MiscUtil.setUGILoginUser(ugi, subject);
 						}
@@ -133,8 +134,7 @@ public class RangerKafkaAuthorizer implements Authorizer {
 	}
 
 	@Override
-	public boolean authorize(Session session, Operation operation,
-			Resource resource) {
+	public boolean authorize(Session session, Operation operation, Resource resource) {
 
 		if (rangerPlugin == null) {
 			MiscUtil.logErrorMessageByInterval(logger,
