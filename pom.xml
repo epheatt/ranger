@@ -216,7 +216,7 @@
                 <module>knox-agent</module>
                 <module>storm-agent</module>
                 <module>plugin-yarn</module>
-		<module>plugin-ozone</module>
+		        <module>plugin-ozone</module>
                 <module>security-admin</module>
                 <module>plugin-kafka</module>
                 <module>plugin-solr</module>
@@ -236,7 +236,7 @@
                 <module>ranger-hbase-plugin-shim</module>
                 <module>ranger-knox-plugin-shim</module>
                 <module>ranger-yarn-plugin-shim</module>
-		<module>ranger-ozone-plugin-shim</module>
+		        <module>ranger-ozone-plugin-shim</module>
                 <module>ranger-storm-plugin-shim</module>
                 <module>ranger-kafka-plugin-shim</module>
                 <module>ranger-solr-plugin-shim</module>
@@ -267,7 +267,7 @@
                                 <descriptor>src/main/assembly/storm-agent.xml</descriptor>
                                 <descriptor>src/main/assembly/plugin-kafka.xml</descriptor>
                                 <descriptor>src/main/assembly/plugin-yarn.xml</descriptor>
-				<descriptor>src/main/assembly/plugin-ozone.xml</descriptor>
+				                <descriptor>src/main/assembly/plugin-ozone.xml</descriptor>
                                 <descriptor>src/main/assembly/plugin-solr.xml</descriptor>
                                 <descriptor>src/main/assembly/admin-web.xml</descriptor>
                                 <descriptor>src/main/assembly/solr_audit_conf.xml</descriptor>
@@ -450,7 +450,7 @@
                 </plugins>
             </build>
         </profile>
-	<profile>
+	    <profile>
             <id>ranger-ozone-plugin</id>
             <modules>
                 <module>agents-audit</module>
@@ -873,11 +873,13 @@
     </repositories>
     <dependencyManagement>
         <dependencies>
+            <!--
             <dependency>
                 <groupId>com.github.epheatt</groupId>
                 <artifactId>ranger</artifactId>
-                <version>hive-2.3.6-presto-323-backport</version>
+                <version>topic/hive-2.3.6-presto-323-backport</version>
             </dependency>
+            -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
