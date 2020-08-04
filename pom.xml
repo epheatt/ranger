@@ -753,7 +753,7 @@
                 <module>ranger-elasticsearch-plugin-shim</module>
                 <module>plugin-presto</module>
                 <module>ranger-presto-plugin-shim</module>
-                <module>unixauthnative</module>
+                <!--<module>unixauthnative</module>-->
             </modules>
             <build>
                 <plugins>
