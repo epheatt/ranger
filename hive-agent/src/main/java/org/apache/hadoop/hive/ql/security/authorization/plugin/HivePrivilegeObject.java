@@ -316,7 +316,7 @@ public class HivePrivilegeObject implements Comparable<HivePrivilegeObject> {
     }
 
     private String getDbObjectName(String dbname2, String objectName2) {
-        return (dbname == null ? "" : dbname + ".") + objectName;
+        return (dbname2 == null ? "" : dbname2 + ".") + objectName2;
     }
 
     public List<String> getCellValueTransformers() {
