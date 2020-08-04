@@ -20,9 +20,7 @@
 package org.apache.ranger.authorization.kafka.authorizer;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletionStage;
 
 import javax.security.auth.Subject;
 
