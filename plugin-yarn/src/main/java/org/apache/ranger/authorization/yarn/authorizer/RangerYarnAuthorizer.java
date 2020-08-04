@@ -23,7 +23,6 @@ package org.apache.ranger.authorization.yarn.authorizer;
 import java.net.InetAddress;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
