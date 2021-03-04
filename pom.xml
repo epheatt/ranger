@@ -760,7 +760,7 @@
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <version>2.2-beta-5</version>
-			<configuration>
+			            <configuration>
                             <descriptors>
                                 <descriptor>src/main/assembly/hdfs-agent.xml</descriptor>
                                 <descriptor>src/main/assembly/hive-agent.xml</descriptor>
